@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ChatProvider } from "./contexts/ChatContext";
 import Navigation from "./components/Navigation";
 import Homepage from "./pages/Homepage";
 import ServerRules from "./pages/ServerRules";
@@ -18,22 +20,26 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="min-h-screen bg-primary text-primary">
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/rules" element={<ServerRules />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/guides" element={<PlayerGuides />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/downloads" element={<Downloads />} />
-            <Route path="/leaderboards" element={<Leaderboards />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/admin" element={<AdminPanel />} />
-          </Routes>
-          <Footer />
-          <Toaster />
-        </div>
+        <AuthProvider>
+          <ChatProvider>
+            <div className="min-h-screen bg-primary text-primary">
+              <Navigation />
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/rules" element={<ServerRules />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/guides" element={<PlayerGuides />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/downloads" element={<Downloads />} />
+                <Route path="/leaderboards" element={<Leaderboards />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/admin" element={<AdminPanel />} />
+              </Routes>
+              <Footer />
+              <Toaster />
+            </div>
+          </ChatProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
