@@ -48,5 +48,4 @@ async def initialize_database():
     print("✅ Database initialization complete")
 
 if __name__ == "__main__":
-    asyncio.run(initialize_database())</content>
-    </file>
+    asyncio.run(initialize_database())
